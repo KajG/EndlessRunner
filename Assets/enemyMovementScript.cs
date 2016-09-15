@@ -8,23 +8,10 @@ public class enemyMovementScript : MonoBehaviour {
     float enemyXposition;
     Vector3 enemyMovement = new Vector3();
     float randomSpawnLocation;// = Random.Range(0f, 1f);
-
 	// Use this for initialization
 	void Start ()
     {
-        randomSpawnLocation = Random.Range(0f, 1f);
-        if(randomSpawnLocation <= 0.33)
-        {
-            enemyMovement = new Vector3(-2, 5, 0);
-        }
-        if(randomSpawnLocation >= 0.33 && randomSpawnLocation <= 0.66)
-        {
-            enemyMovement = new Vector3(0, 5, 0);
-        }
-        if(randomSpawnLocation >= 0.66)
-        {
-            enemyMovement = new Vector3(2, 5, 0);
-        }
+        respawn();
         //enemyMovement = new Vector3(Random.Range(-2f, 2f), 10, 0);
 	}
 	
@@ -40,13 +27,33 @@ public class enemyMovementScript : MonoBehaviour {
         if(other.gameObject.tag == "player")
         {
             Debug.Log("kut2d");
-            this.transform.position += new Vector3(0, 5, 0);
+            //enemyMovement += new Vector3(0, 3.78f, 0);
+            respawn();
         }
     }
 
+    void respawn()
+    {
+        randomSpawnLocation = Random.Range(0f, 1f);
+        if (randomSpawnLocation <= 0.33)
+        {
+            enemyMovement = new Vector3(-2, 5, 0);
+        }
+        if (randomSpawnLocation >= 0.33 && randomSpawnLocation <= 0.66)
+        {
+            enemyMovement = new Vector3(0, 5, 0);
+        }
+        if (randomSpawnLocation >= 0.66)
+        {
+            enemyMovement = new Vector3(2, 5, 0);
+        }
+    }
 
     void Update()
     {
-        
+        if(this.transform.position.y <= -5.55f)
+        {
+            respawn();
+        }
     }
 }
