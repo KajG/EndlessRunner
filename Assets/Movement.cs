@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Movement : MonoBehaviour {
@@ -6,6 +7,7 @@ public class Movement : MonoBehaviour {
     int speed = 2;
     Vector3 linksRechts = new Vector3();
 
+    public Text scoreText;
 
 	// Use this for initialization
 	void Start () {

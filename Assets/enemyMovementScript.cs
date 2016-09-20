@@ -8,12 +8,14 @@ public class enemyMovementScript : MonoBehaviour {
     float enemyXposition;
     Vector3 enemyMovement = new Vector3();
     float randomSpawnLocation;// = Random.Range(0f, 1f);
-	// Use this for initialization
-	void Start ()
+    public GameObject enemy;
+    // Use this for initialization
+    void Start ()
     {
-        respawn();
+        //respawn();
+       
         //enemyMovement = new Vector3(Random.Range(-2f, 2f), 10, 0);
-	}
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate ()
@@ -23,7 +25,7 @@ public class enemyMovementScript : MonoBehaviour {
 	}
     void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("hoi :DDD");
+        
         if(other.gameObject.tag == "player")
         {
             Debug.Log("kut2d");
@@ -38,15 +40,22 @@ public class enemyMovementScript : MonoBehaviour {
         if (randomSpawnLocation <= 0.33)
         {
             enemyMovement = new Vector3(-2, 5, 0);
+            Debug.Log("waeta");
+            Instantiate(enemy, enemyMovement, Quaternion.identity);
         }
         if (randomSpawnLocation >= 0.33 && randomSpawnLocation <= 0.66)
         {
             enemyMovement = new Vector3(0, 5, 0);
+            Instantiate(enemy, enemyMovement, Quaternion.identity);
         }
         if (randomSpawnLocation >= 0.66)
         {
             enemyMovement = new Vector3(2, 5, 0);
+            Instantiate(enemy, enemyMovement, Quaternion.identity);
         }
+        
+
+
     }
 
     void Update()
